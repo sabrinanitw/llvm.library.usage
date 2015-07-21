@@ -2,7 +2,7 @@ CXX := g++
 LLVM-CONFIG := llvm-config
 CFLAGS = $(shell $(LLVM-CONFIG) --cflags) -g3 -O2 -std=c++11
 LDFLAGS = $(shell $(LLVM-CONFIG) --ldflags)
-LIBS = $(shell $(LLVM-CONFIG) --libs support)
+LIBS = $(shell $(LLVM-CONFIG) --libs support) -lboost_system -lboost_filesystem
 SYSTEMLIBS = $(shell $(LLVM-CONFIG) --system-libs)
 
 

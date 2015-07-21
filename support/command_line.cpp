@@ -1,5 +1,6 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Path.h"
+#include <boost/filesystem.hpp>
 #include <iostream>
 #include <string>
 
@@ -9,6 +10,7 @@ using std::string;
 using namespace llvm;
 using namespace llvm::cl;
 using namespace llvm::sys::path;
+namespace bf = boost::filesystem;   // Using namespace alias
 
 #define STR(x) #x
 #define BUILD_YEAR_CH0 (__DATE__[ 7])
@@ -29,18 +31,18 @@ static void copilotVersionPrinter(void) {
 }
 
 int main(int argc, char **argv) {
-  string ExtStr;
-  string FilenameStr;
-  string AbsolutePathStr;
 
   SetVersionPrinter(&copilotVersionPrinter);
   ParseCommandLineOptions(argc, argv);
 
   cout << "hello LLVM CommandLine 2.0" << endl;
-  ExtStr = llvm::sys::path::extension(AceFile).str();
-  FilenameStr = llvm::sys::path::filename(AceFile).str();
-  cout << "acefile extension is " << ExtStr << endl;
-  cout << "acefile filename is " << FilenameStr << endl;
-  cout << "acefile rootPath is " << AbsolutePathStr << endl;
+
+  bf::path AceFilePath = AceFile.c_str();
+  bf::path AceFullPath = bf::complete(AceFilePath);
+
+  cout << "acefile stem is " << AceFilePath.stem().generic_string() << endl;
+  cout << "acefile extension is " << AceFilePath.extension().generic_string() << endl;
+  cout << "acefile filename is " << AceFilePath.filename().generic_string() << endl;
+  cout << "acefile rootPath is " << AceFullPath.parent_path().generic_string() << endl;
   return 0;
 }
