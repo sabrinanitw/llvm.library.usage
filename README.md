@@ -9,6 +9,22 @@ know the library name which provids function I was using.
 
   Kito show me how to use llvm-config.
 
+2015.7.21
+  The filesystem support of llvm is lame currently. Follow Kito's suggestion
+  to use Boost.Filesystem library instead.
+
+
+================================================================================
+BOOST
+================================================================================
+# boost provides better filesystem library support
+The Boost.Filesystem library provides facilities to manipulate files and
+directories, and the paths that identify them.
+(http://www.boost.org/doc/libs/1_57_0/libs/filesystem/doc/index.htm)
+
+================================================================================
+llvm-config
+================================================================================
 $ llvm-config
 usage: llvm-config <OPTION>... [<COMPONENT>...]
 
