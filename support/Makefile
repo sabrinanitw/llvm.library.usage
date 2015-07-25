@@ -1,4 +1,6 @@
-CXX := g++
+HOST_TOOLS_PATH :=
+GCC = $(HOST_TOOLS_PATH)gcc
+CXX = $(HOST_TOOLS_PATH)g++
 LLVM-CONFIG := llvm-config
 CFLAGS = $(shell $(LLVM-CONFIG) --cflags) -g3 -O2 -std=c++11
 LDFLAGS = $(shell $(LLVM-CONFIG) --ldflags)
